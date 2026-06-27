@@ -101,3 +101,76 @@ heart.remove();
 },6500);
 
 },700);
+// ==============================
+// Part 3B - Shooting Stars
+// ==============================
+
+const shootingContainer = document.getElementById("shooting-stars");
+
+function createShootingStar(){
+
+    const star = document.createElement("div");
+
+    star.style.position = "absolute";
+    star.style.width = "3px";
+    star.style.height = "3px";
+    star.style.background = "white";
+    star.style.boxShadow = "0 0 20px white";
+    star.style.borderRadius = "50%";
+
+    star.style.left = Math.random()*100 + "vw";
+    star.style.top = Math.random()*40 + "vh";
+
+    star.style.transition = "all 1.8s linear";
+
+    shootingContainer.appendChild(star);
+
+    setTimeout(()=>{
+
+        star.style.transform =
+        "translate(-350px,350px)";
+
+        star.style.opacity = "0";
+
+    },100);
+
+    setTimeout(()=>{
+
+        star.remove();
+
+    },2000);
+
+}
+
+setInterval(createShootingStar,1800);
+
+
+// ==============================
+// Moon Glow Animation
+// ==============================
+
+const moon = document.querySelector(".moon");
+
+setInterval(()=>{
+
+moon.animate([
+
+{
+boxShadow:"0 0 35px white"
+},
+
+{
+boxShadow:"0 0 90px #ffffff"
+},
+
+{
+boxShadow:"0 0 35px white"
+}
+
+],{
+
+duration:3000
+
+});
+
+},3000);
