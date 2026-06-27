@@ -174,3 +174,60 @@ duration:3000
 });
 
 },3000);
+// ==============================
+// Part 3C - Gift Surprise
+// ==============================
+
+const giftButton = document.getElementById("giftButton");
+
+giftButton.addEventListener("click", () => {
+
+    document.body.style.transition = "background 2s";
+    document.body.style.background =
+    "linear-gradient(180deg,#180033,#050010,#000)";
+
+    alert(
+`🎉 Happy Birthday Mashfia! 💜
+
+May your life be filled with happiness,
+love, success and endless smiles.
+
+✨ You are truly special. ✨
+
+Forever Yours,
+Daud ❤️`
+    );
+
+});
+
+
+// ==============================
+// Sparkles
+// ==============================
+
+setInterval(() => {
+
+    const sparkle = document.createElement("div");
+
+    sparkle.innerHTML = "✨";
+
+    sparkle.style.position = "fixed";
+    sparkle.style.left = Math.random()*100+"vw";
+    sparkle.style.top = Math.random()*100+"vh";
+    sparkle.style.fontSize = (12+Math.random()*20)+"px";
+    sparkle.style.pointerEvents = "none";
+    sparkle.style.opacity = "1";
+    sparkle.style.transition = "all 2s linear";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+        sparkle.style.opacity = "0";
+        sparkle.style.transform = "scale(2)";
+    },100);
+
+    setTimeout(() => {
+        sparkle.remove();
+    },2200);
+
+},800);
