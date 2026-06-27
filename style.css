@@ -306,3 +306,141 @@ box-shadow:0 0 50px #ff66ff;
     font-size:22px;
     line-height:1.8;
 }
+/* ===========================
+   Floating Hearts
+=========================== */
+
+#hearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+#hearts::before,
+#hearts::after{
+    content:"💜";
+    position:absolute;
+    font-size:28px;
+    animation:floatHeart 12s linear infinite;
+}
+
+#hearts::before{
+    left:20%;
+}
+
+#hearts::after{
+    left:75%;
+    animation-delay:6s;
+}
+
+@keyframes floatHeart{
+    from{
+        transform:translateY(110vh) scale(.8);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-20vh) scale(1.3);
+        opacity:0;
+    }
+}
+
+/* ===========================
+   Birthday Cake
+=========================== */
+
+.cake-section{
+    display:flex;
+    justify-content:center;
+    padding:80px 20px;
+}
+
+.cake{
+    position:relative;
+    width:180px;
+}
+
+.layer{
+    height:45px;
+    border-radius:12px;
+    margin-bottom:6px;
+}
+
+.layer1{
+    background:#ff9ecf;
+}
+
+.layer2{
+    background:#ffc2df;
+}
+
+.layer3{
+    background:#ffe3f1;
+}
+
+.candles{
+    display:flex;
+    justify-content:space-evenly;
+    margin-bottom:8px;
+}
+
+.candles span{
+    width:8px;
+    height:35px;
+    background:#fff;
+    position:relative;
+}
+
+.candles span::before{
+    content:"";
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:gold;
+    border-radius:50%;
+    top:-8px;
+    left:-1px;
+    box-shadow:0 0 15px gold;
+    animation:flicker .8s infinite alternate;
+}
+
+@keyframes flicker{
+    from{opacity:.5;}
+    to{opacity:1;}
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:42px;
+}
+
+.hero p{
+    font-size:18px;
+}
+
+.glass{
+    padding:25px;
+}
+
+.photo-frame{
+    width:180px;
+    height:180px;
+}
+
+.glass h2{
+    font-size:32px;
+}
+
+.final-message h2{
+    font-size:34px;
+}
+
+}
