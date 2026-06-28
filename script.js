@@ -545,3 +545,41 @@ requestAnimationFrame(animateFireworks);
 }
 
 animateFireworks();
+// ======================================
+// PREMIUM FIREWORKS - PART 2
+// ======================================
+
+// Auto Fireworks every 3 seconds
+setInterval(() => {
+
+    explode(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height * 0.6
+    );
+
+}, 3000);
+
+// Massive Fireworks when Gift Button is clicked
+giftButton.addEventListener("click", () => {
+
+    for(let i = 0; i < 10; i++){
+
+        setTimeout(() => {
+
+            explode(
+                Math.random() * canvas.width,
+                100 + Math.random() * (canvas.height * 0.5)
+            );
+
+        }, i * 250);
+
+    }
+
+});
+
+// Fireworks on mouse click
+canvas.addEventListener("click", (e) => {
+
+    explode(e.clientX, e.clientY);
+
+});
