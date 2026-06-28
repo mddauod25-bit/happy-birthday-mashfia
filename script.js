@@ -309,3 +309,111 @@ piece.remove();
 }
 
 giftButton.addEventListener("click",launchConfetti);
+// ===================================
+// PREMIUM V3 - Balloons + Parallax
+// ===================================
+
+// Premium Loader
+window.addEventListener("load", () => {
+
+    const loader = document.getElementById("loader");
+
+    setTimeout(() => {
+
+        loader.classList.add("hideLoader");
+
+    }, 2200);
+
+});
+
+// Floating Balloons
+
+const balloonContainer = document.getElementById("balloons");
+
+const balloonColors = [
+"#ff4fd8",
+"#8a2be2",
+"#00bfff",
+"#ffd700",
+"#ff6b6b",
+"#ffffff"
+];
+
+function createBalloon(){
+
+    const balloon = document.createElement("div");
+
+    balloon.className = "balloon";
+
+    balloon.style.left = Math.random()*100 + "vw";
+
+    balloon.style.background =
+    balloonColors[Math.floor(Math.random()*balloonColors.length)];
+
+    balloon.style.animationDuration =
+    (8 + Math.random()*5) + "s";
+
+    balloon.style.transform =
+    "scale("+(0.8+Math.random()*0.6)+")";
+
+    balloonContainer.appendChild(balloon);
+
+    setTimeout(()=>{
+
+        balloon.remove();
+
+    },14000);
+
+}
+
+setInterval(createBalloon,1200);
+
+
+// 3D Galaxy Parallax
+
+document.addEventListener("mousemove",(e)=>{
+
+const x=(e.clientX/window.innerWidth-.5)*20;
+
+const y=(e.clientY/window.innerHeight-.5)*20;
+
+const galaxy=document.querySelector(".galaxy");
+
+galaxy.style.transform=
+`translate(${x}px,${y}px) scale(1.08)`;
+
+});
+
+
+// Premium Photo Glow
+
+const photo=document.querySelector(".photo-frame");
+
+photo.addEventListener("mouseenter",()=>{
+
+photo.style.boxShadow=
+"0 0 80px #ff66ff,0 0 120px #00bfff";
+
+});
+
+photo.addEventListener("mouseleave",()=>{
+
+photo.style.boxShadow=
+"0 0 35px #b84dff";
+
+});
+
+
+// Premium Gift Animation
+
+giftButton.addEventListener("mouseenter",()=>{
+
+giftButton.style.transform="scale(1.15)";
+
+});
+
+giftButton.addEventListener("mouseleave",()=>{
+
+giftButton.style.transform="scale(1)";
+
+});
