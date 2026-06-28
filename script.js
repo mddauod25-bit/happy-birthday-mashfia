@@ -231,3 +231,20 @@ setInterval(() => {
     },2200);
 
 },800);
+// ==============================
+// Background Music
+// ==============================
+
+const bgMusic = document.getElementById("bgMusic");
+
+// Play music when the user clicks anywhere for the first time
+document.addEventListener("click", () => {
+    bgMusic.play().catch(err => console.log(err));
+}, { once: true });
+
+// Also play when Gift Button is clicked
+const giftBtn = document.getElementById("giftButton");
+
+giftBtn.addEventListener("click", () => {
+    bgMusic.play().catch(err => console.log(err));
+});
