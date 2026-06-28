@@ -950,3 +950,24 @@ opacity:0;
 visibility:hidden;
 
 }
+/* ===========================
+   Intro Animation
+=========================== */
+
+.fadeText{
+    animation:fadeText .5s ease;
+}
+
+@keyframes fadeText{
+
+0%{
+opacity:0;
+transform:translateY(20px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+
+}
