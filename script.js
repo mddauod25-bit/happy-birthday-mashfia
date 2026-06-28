@@ -680,3 +680,45 @@ intro.style.display="none";
 }
 
 });
+// ======================================
+// Premium Typing Effect
+// ======================================
+
+function typeText(element, message, speed = 35){
+
+    element.innerHTML = "";
+
+    let i = 0;
+
+    const typing = setInterval(() => {
+
+        element.innerHTML += message.charAt(i);
+
+        i++;
+
+        if(i >= message.length){
+
+            clearInterval(typing);
+
+        }
+
+    }, speed);
+
+}
+
+// Intro Typing
+nextBtn.addEventListener("click", () => {
+
+    if(currentPage < introMessages.length){
+
+        typeText(title, introMessages[currentPage].title, 40);
+
+        setTimeout(() => {
+
+            typeText(text, introMessages[currentPage].text, 20);
+
+        }, 400);
+
+    }
+
+});
