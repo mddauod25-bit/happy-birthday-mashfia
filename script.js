@@ -263,3 +263,49 @@ loader.classList.add("hideLoader");
 },2500);
 
 });
+// ==============================
+// Premium Confetti Explosion
+// ==============================
+
+const confetti = document.getElementById("confetti");
+
+function launchConfetti(){
+
+const colors=[
+"#ff4dff",
+"#8a2be2",
+"#00bfff",
+"#ffd700",
+"#ffffff",
+"#ff69b4"
+];
+
+for(let i=0;i<180;i++){
+
+const piece=document.createElement("div");
+
+piece.className="confetti-piece";
+
+piece.style.left=Math.random()*100+"vw";
+
+piece.style.background=
+colors[Math.floor(Math.random()*colors.length)];
+
+piece.style.animationDelay=Math.random()*0.8+"s";
+
+piece.style.transform=
+`rotate(${Math.random()*360}deg)`;
+
+confetti.appendChild(piece);
+
+setTimeout(()=>{
+
+piece.remove();
+
+},4500);
+
+}
+
+}
+
+giftButton.addEventListener("click",launchConfetti);
