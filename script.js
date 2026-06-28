@@ -760,3 +760,29 @@ giftButton.addEventListener("click", () => {
     }
 
 });
+// ======================================
+// Grand Finale Popup
+// ======================================
+
+const popup = document.getElementById("finalPopup");
+const closePopup = document.getElementById("closePopup");
+
+window.addEventListener("scroll",()=>{
+
+const scrollTop=window.scrollY;
+
+const pageHeight=document.body.scrollHeight-window.innerHeight;
+
+if(scrollTop>pageHeight-150){
+
+popup.classList.add("show");
+
+}
+
+});
+
+closePopup.onclick=()=>{
+
+popup.classList.remove("show");
+
+}
