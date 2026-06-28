@@ -786,3 +786,61 @@ closePopup.onclick=()=>{
 popup.classList.remove("show");
 
 }
+// ======================================
+// Final Surprise Popup
+// ======================================
+
+const finalPopup = document.getElementById("finalPopup");
+const closePopup = document.getElementById("closePopup");
+
+let popupShown = false;
+
+window.addEventListener("scroll", () => {
+
+    const scrollPosition = window.scrollY + window.innerHeight;
+    const pageHeight = document.documentElement.scrollHeight;
+
+    // Show popup when user reaches bottom
+    if (!popupShown && scrollPosition >= pageHeight - 100) {
+
+        popupShown = true;
+
+        finalPopup.classList.add("show");
+
+        // Heart Rain
+        for(let i=0;i<40;i++){
+
+            setTimeout(()=>{
+
+                const heart=document.createElement("div");
+
+                heart.className="rain-heart";
+
+                heart.innerHTML="💜";
+
+                heart.style.left=Math.random()*100+"vw";
+
+                heart.style.fontSize=(18+Math.random()*18)+"px";
+
+                document.body.appendChild(heart);
+
+                setTimeout(()=>{
+
+                    heart.remove();
+
+                },5000);
+
+            },i*70);
+
+        }
+
+    }
+
+});
+
+// Close Popup
+closePopup.addEventListener("click",()=>{
+
+    finalPopup.classList.remove("show");
+
+});
