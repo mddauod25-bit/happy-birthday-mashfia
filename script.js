@@ -583,3 +583,32 @@ canvas.addEventListener("click", (e) => {
     explode(e.clientX, e.clientY);
 
 });
+// ==============================
+// Premium Meteor Shower
+// ==============================
+
+const meteorContainer = document.getElementById("shooting-stars");
+
+function createMeteor(){
+
+    const meteor = document.createElement("div");
+
+    meteor.className = "meteor";
+
+    meteor.style.left = Math.random()*window.innerWidth + "px";
+    meteor.style.top = Math.random()*250 + "px";
+
+    meteor.style.animation =
+        `meteorMove ${1+Math.random()}s linear forwards`;
+
+    meteorContainer.appendChild(meteor);
+
+    setTimeout(()=>{
+
+        meteor.remove();
+
+    },2000);
+
+}
+
+setInterval(createMeteor,1200);
