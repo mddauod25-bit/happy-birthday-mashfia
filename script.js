@@ -248,3 +248,18 @@ const giftBtn = document.getElementById("giftButton");
 giftBtn.addEventListener("click", () => {
     bgMusic.play().catch(err => console.log(err));
 });
+// ==============================
+// Premium Loader
+// ==============================
+
+window.addEventListener("load", () => {
+
+const loader = document.getElementById("loader");
+
+setTimeout(() => {
+
+loader.classList.add("hideLoader");
+
+},2500);
+
+});
