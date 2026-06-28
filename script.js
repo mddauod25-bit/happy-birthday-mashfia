@@ -722,3 +722,41 @@ nextBtn.addEventListener("click", () => {
     }
 
 });
+// ======================================
+// Premium Surprise Effect
+// ======================================
+
+giftButton.addEventListener("click", () => {
+
+    document.body.classList.add("surprise-mode");
+
+    card.classList.add("show");
+
+    // Heart Rain
+    for(let i=0;i<60;i++){
+
+        setTimeout(()=>{
+
+            const heart = document.createElement("div");
+
+            heart.className="rain-heart";
+
+            heart.innerHTML="💜";
+
+            heart.style.left=Math.random()*100+"vw";
+
+            heart.style.fontSize=(18+Math.random()*25)+"px";
+
+            document.body.appendChild(heart);
+
+            setTimeout(()=>{
+
+                heart.remove();
+
+            },5000);
+
+        },i*80);
+
+    }
+
+});
