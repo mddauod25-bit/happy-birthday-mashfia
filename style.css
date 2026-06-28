@@ -1013,3 +1013,52 @@ opacity:0;
 }
 
 }
+/* ===========================
+   Premium Photo Effect
+=========================== */
+
+.photo-frame{
+    position:relative;
+    overflow:hidden;
+}
+
+.photo-frame::before{
+    content:"";
+    position:absolute;
+    top:-100%;
+    left:-100%;
+    width:60%;
+    height:300%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.8),
+        transparent
+    );
+    transform:rotate(25deg);
+    animation:shine 4s infinite;
+}
+
+@keyframes shine{
+
+0%{
+left:-120%;
+}
+
+100%{
+left:180%;
+}
+
+}
+
+.photo-frame:hover{
+
+transform:scale(1.06);
+
+transition:.5s;
+
+box-shadow:
+0 0 30px #ff66ff,
+0 0 70px #9b4dff;
+
+}
