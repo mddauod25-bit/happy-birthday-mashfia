@@ -864,3 +864,89 @@ opacity:0;
 }
 
 }
+/* ===========================
+   Intro Story
+=========================== */
+
+.intro{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(180deg,#140022,#050010,#000);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999999;
+transition:1s;
+}
+
+.intro-box{
+
+width:90%;
+max-width:600px;
+text-align:center;
+
+padding:40px;
+
+background:rgba(255,255,255,.08);
+
+border-radius:30px;
+
+backdrop-filter:blur(15px);
+
+box-shadow:0 0 40px rgba(255,0,255,.3);
+
+}
+
+.intro h1{
+
+font-size:48px;
+margin-bottom:20px;
+
+}
+
+.intro p{
+
+font-size:22px;
+line-height:1.8;
+
+}
+
+#nextIntro{
+
+margin-top:35px;
+
+padding:15px 35px;
+
+border:none;
+
+border-radius:40px;
+
+background:#ff4db8;
+
+color:white;
+
+font-size:20px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+#nextIntro:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 0 25px #ff4db8;
+
+}
+
+.hideIntro{
+
+opacity:0;
+visibility:hidden;
+
+}
