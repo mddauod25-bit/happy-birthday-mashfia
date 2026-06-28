@@ -613,3 +613,60 @@ function createMeteor(){
 }
 
 setInterval(createMeteor,1200);
+// ======================================
+// Intro Story Messages
+// ======================================
+
+const intro = document.getElementById("intro");
+const title = document.getElementById("introTitle");
+const text = document.getElementById("introText");
+const nextBtn = document.getElementById("nextIntro");
+
+const introMessages = [
+
+{
+title:"💜 Hey Mashfia...",
+text:"Daud made something special just for you..."
+},
+
+{
+title:"🐼 A Little Surprise",
+text:"Every smile of yours makes someone's world brighter. ✨"
+},
+
+{
+title:"🌙 Tonight...",
+text:"The moon, the stars and the whole galaxy are celebrating your birthday. Cuz I told them . It's your Birthday."
+},
+
+{
+title:"🎂 Happy Birthday",
+text:"Now it's time to open your special birthday surprise. 💜"
+}
+
+];
+
+let currentPage = 0;
+
+nextBtn.addEventListener("click",()=>{
+
+currentPage++;
+
+if(currentPage < introMessages.length){
+
+title.innerHTML = introMessages[currentPage].title;
+text.innerHTML = introMessages[currentPage].text;
+
+}else{
+
+intro.style.opacity="0";
+
+setTimeout(()=>{
+
+intro.style.display="none";
+
+},800);
+
+}
+
+});
