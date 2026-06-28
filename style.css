@@ -820,3 +820,47 @@ transform:rotate(8deg) scale(1.2);
 }
 
 }
+/* ===========================
+   Premium Meteor Shower
+=========================== */
+
+#shooting-stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.meteor{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 15px white;
+}
+
+.meteor::after{
+    content:"";
+    position:absolute;
+    top:1px;
+    left:-140px;
+    width:140px;
+    height:2px;
+    background:linear-gradient(to right,transparent,white);
+}
+
+@keyframes meteorMove{
+
+0%{
+transform:translate(0,0) rotate(-45deg);
+opacity:1;
+}
+
+100%{
+transform:translate(-500px,500px) rotate(-45deg);
+opacity:0;
+}
+
+}
