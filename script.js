@@ -6,7 +6,7 @@
 // ⭐ Create Twinkling Stars
 const stars = document.getElementById("stars");
 
-for(let i = 0; i < 250; i++){
+for(let i = 0; i < 120; i++){
 
     const star = document.createElement("div");
 
@@ -100,7 +100,7 @@ heart.remove();
 
 },6500);
 
-},700);
+},1200);
 // ==============================
 // Part 3B - Shooting Stars
 // ==============================
@@ -191,6 +191,7 @@ giftButton.addEventListener("click", () => {
 
 May your life be filled with happiness,
 love, success and endless smiles.
+    Love you from my heart. 
 
 ✨ You are truly special. ✨
 
@@ -230,7 +231,7 @@ setInterval(() => {
         sparkle.remove();
     },2200);
 
-},800);
+},1500);
 // ==============================
 // Background Music
 // ==============================
