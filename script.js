@@ -789,4 +789,104 @@ popup.classList.remove("show");
 // ======================================
 // Final Surprise Popup
 // ======================================
+// ======================================
+// Premium Gallery Lightbox
+// ======================================
 
+const galleryImages = document.querySelectorAll(".gallery-img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+const closeLightbox = document.getElementById("closeLightbox");
+const prevPhoto = document.getElementById("prevPhoto");
+const nextPhoto = document.getElementById("nextPhoto");
+
+let currentImage = 0;
+
+// Open Image
+galleryImages.forEach((img,index)=>{
+
+img.addEventListener("click",()=>{
+
+currentImage=index;
+
+lightbox.classList.add("show");
+
+lightboxImg.src=galleryImages[currentImage].src;
+
+});
+
+});
+
+// Close
+closeLightbox.addEventListener("click",()=>{
+
+lightbox.classList.remove("show");
+
+});
+
+// Previous
+prevPhoto.addEventListener("click",()=>{
+
+currentImage--;
+
+if(currentImage<0){
+
+currentImage=galleryImages.length-1;
+
+}
+
+lightboxImg.src=galleryImages[currentImage].src;
+
+});
+
+// Next
+nextPhoto.addEventListener("click",()=>{
+
+currentImage++;
+
+if(currentImage>=galleryImages.length){
+
+currentImage=0;
+
+}
+
+lightboxImg.src=galleryImages[currentImage].src;
+
+});
+
+// Close when background clicked
+lightbox.addEventListener("click",(e)=>{
+
+if(e.target===lightbox){
+
+lightbox.classList.remove("show");
+
+}
+
+});
+
+// Keyboard Controls
+document.addEventListener("keydown",(e)=>{
+
+if(!lightbox.classList.contains("show")) return;
+
+if(e.key==="ArrowRight"){
+
+nextPhoto.click();
+
+}
+
+if(e.key==="ArrowLeft"){
+
+prevPhoto.click();
+
+}
+
+if(e.key==="Escape"){
+
+closeLightbox.click();
+
+}
+
+});
