@@ -675,22 +675,40 @@ function typeText(element, message, speed = 35){
 
 }
 
-// Intro Typing
-nextBtn.addEventListener("click", () => {
+let currentPage = 0;
+
+function showIntroPage(index){
+
+    title.innerHTML = introMessages[index].title;
+    text.innerHTML = introMessages[index].text;
+
+}
+
+showIntroPage(0);
+
+nextBtn.onclick = function(){
+
+    currentPage++;
 
     if(currentPage < introMessages.length){
 
-        typeText(title, introMessages[currentPage].title, 40);
+        showIntroPage(currentPage);
 
-        setTimeout(() => {
+    }else{
 
-            typeText(text, introMessages[currentPage].text, 20);
+        intro.style.opacity = "0";
 
-        }, 400);
+        setTimeout(()=>{
+
+            intro.style.display = "none";
+
+            bgMusic.play().catch(()=>{});
+
+        },600);
 
     }
 
-});
+}
 // ======================================
 // Premium Surprise Effect
 // ======================================
