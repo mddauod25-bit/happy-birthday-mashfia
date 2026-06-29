@@ -648,38 +648,7 @@ text:"Now it's time to open your special birthday surprise. 💜"
 
 let currentPage = 0;
 
-nextBtn.addEventListener("click",()=>{
 
-currentPage++;
-
-if(currentPage < introMessages.length){
-
-title.classList.remove("fadeText");
-text.classList.remove("fadeText");
-
-setTimeout(()=>{
-
-title.innerHTML = introMessages[currentPage].title;
-text.innerHTML = introMessages[currentPage].text;
-
-title.classList.add("fadeText");
-text.classList.add("fadeText");
-
-},100);
-
-}else{
-
-intro.style.opacity="0";
-
-setTimeout(()=>{
-
-intro.style.display="none";
-
-},800);
-
-}
-
-});
 // ======================================
 // Premium Typing Effect
 // ======================================
