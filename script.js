@@ -364,7 +364,6 @@ setInterval(createBalloon, 1200);
 // Galaxy Mouse Parallax
 // ======================================
 
-const galaxy = document.querySelector(".galaxy");
 
 document.addEventListener("mousemove", (e) => {
 
