@@ -1,20 +1,43 @@
-// ========================================
+// ======================================
 // GALAXY BIRTHDAY WEBSITE
-// Part 1
-// Initialization + Stars + Gift Scroll
-// ========================================
+// CLEAN VERSION
+// Part 1 / 6
+// ======================================
 
-// Main Elements
+"use strict";
+
+// ======================================
+// ELEMENTS
+// ======================================
+
 const stars = document.getElementById("stars");
+const hearts = document.getElementById("hearts");
 const giftButton = document.getElementById("giftButton");
 const card = document.getElementById("card");
 const bgMusic = document.getElementById("bgMusic");
+const loader = document.getElementById("loader");
+const galaxy = document.querySelector(".galaxy");
+const moon = document.querySelector(".moon");
 
-// =========================
-// Create Twinkling Stars
-// =========================
+// ======================================
+// PREMIUM LOADER
+// ======================================
 
-for (let i = 0; i < 120; i++) {
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        loader.classList.add("hideLoader");
+
+    }, 2200);
+
+});
+
+// ======================================
+// TWINKLING STARS
+// ======================================
+
+for (let i = 0; i < 150; i++) {
 
     const star = document.createElement("div");
 
@@ -39,9 +62,9 @@ for (let i = 0; i < 120; i++) {
 
 }
 
-// =========================
-// Twinkle Animation
-// =========================
+// ======================================
+// STAR ANIMATION
+// ======================================
 
 const style = document.createElement("style");
 
@@ -51,12 +74,12 @@ style.innerHTML = `
 
 0%{
 opacity:.2;
-transform:scale(.8);
+transform:scale(.7);
 }
 
 100%{
 opacity:1;
-transform:scale(1.5);
+transform:scale(1.6);
 }
 
 }
@@ -65,9 +88,9 @@ transform:scale(1.5);
 
 document.head.appendChild(style);
 
-// =========================
-// Gift Button Scroll
-// =========================
+// ======================================
+// GIFT BUTTON
+// ======================================
 
 giftButton.addEventListener("click", () => {
 
@@ -78,13 +101,28 @@ giftButton.addEventListener("click", () => {
     });
 
 });
-// ========================================
-// PART 2
-// Hearts + Sparkles + Background Music
-// ========================================
 
-// Floating Hearts
-const hearts = document.getElementById("hearts");
+// ======================================
+// AUTO MUSIC
+// ======================================
+
+document.addEventListener("click", () => {
+
+    bgMusic.play().catch(() => {});
+
+}, { once: true });
+
+// ======================================
+// END OF PART 1
+// ======================================
+// ======================================
+// CLEAN VERSION
+// Part 2 / 6
+// Floating Hearts + Sparkles +
+// Moon Glow + Shooting Stars + Meteors
+// ======================================
+
+// 💜 Floating Hearts
 
 setInterval(() => {
 
@@ -94,21 +132,18 @@ setInterval(() => {
 
     heart.style.position = "fixed";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.bottom = "-50px";
-
-    heart.style.fontSize =
-        (20 + Math.random() * 25) + "px";
+    heart.style.bottom = "-40px";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
 
     heart.style.pointerEvents = "none";
     heart.style.transition = "all 6s linear";
+    heart.style.zIndex = "999";
 
     document.body.appendChild(heart);
 
     setTimeout(() => {
 
-        heart.style.transform =
-            "translateY(-110vh)";
-
+        heart.style.transform = "translateY(-110vh)";
         heart.style.opacity = "0";
 
     }, 100);
@@ -117,14 +152,14 @@ setInterval(() => {
 
         heart.remove();
 
-    }, 6500);
+    }, 6200);
 
 }, 1200);
 
 
-// ========================================
+// ======================================
 // Sparkles
-// ========================================
+// ======================================
 
 setInterval(() => {
 
@@ -136,11 +171,9 @@ setInterval(() => {
     sparkle.style.left = Math.random() * 100 + "vw";
     sparkle.style.top = Math.random() * 100 + "vh";
 
-    sparkle.style.fontSize =
-        (12 + Math.random() * 18) + "px";
+    sparkle.style.fontSize = (12 + Math.random() * 18) + "px";
 
     sparkle.style.pointerEvents = "none";
-
     sparkle.style.transition = "all 2s linear";
 
     document.body.appendChild(sparkle);
@@ -161,192 +194,333 @@ setInterval(() => {
 }, 1500);
 
 
-// ========================================
-// Background Music
-// ========================================
+// ======================================
+// Moon Glow
+// ======================================
 
-// প্রথম ক্লিকেই গান চালু হবে
-document.addEventListener("click", () => {
+if (moon) {
 
-    if (bgMusic.paused) {
+    setInterval(() => {
 
-        bgMusic.volume = 0.6;
+        moon.animate([
 
-        bgMusic.play().catch(() => {});
+            {
+                boxShadow: "0 0 30px white"
+            },
 
-    }
+            {
+                boxShadow: "0 0 90px white"
+            },
 
-}, { once: true });
+            {
+                boxShadow: "0 0 30px white"
+            }
+
+        ], {
+
+            duration: 3000
+
+        });
+
+    }, 3000);
+
+}
 
 
-// Gift Button চাপলেও গান চালু হবে
-giftButton.addEventListener("click", () => {
-
-    if (bgMusic.paused) {
-
-        bgMusic.play().catch(() => {});
-
-    }
-
-});
-// ========================================
-// PART 3
-// Shooting Stars + Meteors + Moon Glow
-// ========================================
-
+// ======================================
 // Shooting Stars
+// ======================================
 
 const shootingContainer =
 document.getElementById("shooting-stars");
 
-function createShootingStar(){
+function createShootingStar() {
+
+    if (!shootingContainer) return;
 
     const star = document.createElement("div");
 
     star.style.position = "absolute";
     star.style.width = "3px";
     star.style.height = "3px";
-
     star.style.background = "#fff";
     star.style.borderRadius = "50%";
+    star.style.boxShadow = "0 0 20px white";
 
-    star.style.boxShadow =
-    "0 0 20px white";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 35 + "vh";
 
-    star.style.left =
-    Math.random()*100 + "vw";
-
-    star.style.top =
-    Math.random()*40 + "vh";
-
-    star.style.transition =
-    "all 1.8s linear";
+    star.style.transition = "all 1.8s linear";
 
     shootingContainer.appendChild(star);
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         star.style.transform =
         "translate(-350px,350px)";
 
-        star.style.opacity="0";
+        star.style.opacity = "0";
 
-    },100);
+    }, 100);
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         star.remove();
 
-    },2000);
+    }, 2000);
 
 }
 
-setInterval(createShootingStar,1800);
+setInterval(createShootingStar, 1800);
 
 
-// ========================================
+// ======================================
 // Premium Meteors
-// ========================================
+// ======================================
 
-function createMeteor(){
+function createMeteor() {
 
-    const meteor =
-    document.createElement("div");
+    if (!shootingContainer) return;
 
-    meteor.className="meteor";
+    const meteor = document.createElement("div");
+
+    meteor.className = "meteor";
 
     meteor.style.left =
-    Math.random()*window.innerWidth+"px";
+    Math.random() * window.innerWidth + "px";
 
     meteor.style.top =
-    Math.random()*250+"px";
-
-    meteor.style.animation =
-    `meteorMove ${1+Math.random()}s linear forwards`;
+    Math.random() * 250 + "px";
 
     shootingContainer.appendChild(meteor);
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         meteor.remove();
 
-    },2000);
+    }, 2000);
 
 }
 
-setInterval(createMeteor,1200);
+setInterval(createMeteor, 1300);
 
 
-// ========================================
-// Moon Glow Animation
-// ========================================
+// ======================================
+// End Of Part 2
+// ======================================
+// ======================================
+// CLEAN VERSION
+// Part 3 / 6
+// Balloons + Galaxy Parallax +
+// Photo Glow + Gift Hover + Confetti
+// ======================================
 
-const moon =
-document.querySelector(".moon");
+// 🎈 Floating Balloons
 
-if(moon){
+const balloonContainer = document.getElementById("balloons");
 
-setInterval(()=>{
+const balloonColors = [
+    "#ff4fd8",
+    "#8a2be2",
+    "#00bfff",
+    "#ffd700",
+    "#ff6b6b",
+    "#ffffff"
+];
 
-moon.animate([
+function createBalloon() {
 
-{
-boxShadow:"0 0 35px white"
-},
+    if (!balloonContainer) return;
 
-{
-boxShadow:"0 0 90px #ffffff"
-},
+    const balloon = document.createElement("div");
 
-{
-boxShadow:"0 0 35px white"
+    balloon.className = "balloon";
+
+    balloon.style.left = Math.random() * 100 + "vw";
+
+    balloon.style.background =
+    balloonColors[Math.floor(Math.random() * balloonColors.length)];
+
+    balloon.style.animationDuration =
+    (8 + Math.random() * 5) + "s";
+
+    balloon.style.transform =
+    `scale(${0.8 + Math.random() * 0.6})`;
+
+    balloonContainer.appendChild(balloon);
+
+    setTimeout(() => {
+
+        balloon.remove();
+
+    }, 14000);
+
 }
 
-],{
+setInterval(createBalloon, 1200);
 
-duration:3000
+
+// ======================================
+// Galaxy Mouse Parallax
+// ======================================
+
+const galaxy = document.querySelector(".galaxy");
+
+document.addEventListener("mousemove", (e) => {
+
+    if (!galaxy) return;
+
+    const x =
+    (e.clientX / window.innerWidth - 0.5) * 20;
+
+    const y =
+    (e.clientY / window.innerHeight - 0.5) * 20;
+
+    galaxy.style.transform =
+    `translate(${x}px, ${y}px) scale(1.08)`;
 
 });
 
-},3000);
+
+// ======================================
+// Premium Photo Glow
+// ======================================
+
+const photo = document.querySelector(".photo-frame");
+
+if (photo) {
+
+    photo.addEventListener("mouseenter", () => {
+
+        photo.style.boxShadow =
+        "0 0 80px #ff66ff,0 0 120px #00bfff";
+
+    });
+
+    photo.addEventListener("mouseleave", () => {
+
+        photo.style.boxShadow =
+        "0 0 35px #b84dff";
+
+    });
 
 }
+
+
 // ======================================
-// PART 4 - Premium Fireworks Engine
+// Gift Button Hover
+// ======================================
+
+giftButton.addEventListener("mouseenter", () => {
+
+    giftButton.style.transform = "scale(1.12)";
+
+});
+
+giftButton.addEventListener("mouseleave", () => {
+
+    giftButton.style.transform = "scale(1)";
+
+});
+
+
+// ======================================
+// Premium Confetti
+// ======================================
+
+const confetti =
+document.getElementById("confetti");
+
+function launchConfetti() {
+
+    if (!confetti) return;
+
+    const colors = [
+        "#ff4fd8",
+        "#8a2be2",
+        "#00bfff",
+        "#ffd700",
+        "#ffffff",
+        "#ff6b6b"
+    ];
+
+    for (let i = 0; i < 180; i++) {
+
+        const piece = document.createElement("div");
+
+        piece.className = "confetti-piece";
+
+        piece.style.left =
+        Math.random() * 100 + "vw";
+
+        piece.style.background =
+        colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.animationDelay =
+        Math.random() * 0.8 + "s";
+
+        piece.style.transform =
+        `rotate(${Math.random() * 360}deg)`;
+
+        confetti.appendChild(piece);
+
+        setTimeout(() => {
+
+            piece.remove();
+
+        }, 4500);
+
+    }
+
+}
+
+giftButton.addEventListener("click", launchConfetti);
+
+
+// ======================================
+// End Of Part 3
+// ======================================
+// ======================================
+// CLEAN VERSION
+// Part 4 / 6
+// Premium Fireworks Engine
 // ======================================
 
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
+function resizeCanvas(){
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
 }
 
 resizeCanvas();
+
 window.addEventListener("resize", resizeCanvas);
 
 let particles = [];
 
-class Particle {
+class Particle{
 
-    constructor(x, y, color) {
+    constructor(x,y,color){
 
         this.x = x;
         this.y = y;
 
         this.color = color;
 
-        this.radius = Math.random() * 3 + 2;
+        this.radius = Math.random()*3 + 2;
 
-        this.speedX = (Math.random() - 0.5) * 10;
-        this.speedY = (Math.random() - 0.5) * 10;
+        this.speedX = (Math.random()-0.5)*10;
+        this.speedY = (Math.random()-0.5)*10;
 
         this.life = 100;
 
     }
 
-    update() {
+    update(){
 
         this.x += this.speedX;
         this.y += this.speedY;
@@ -357,7 +531,7 @@ class Particle {
 
     }
 
-    draw() {
+    draw(){
 
         ctx.beginPath();
 
@@ -366,7 +540,7 @@ class Particle {
             this.y,
             this.radius,
             0,
-            Math.PI * 2
+            Math.PI*2
         );
 
         ctx.fillStyle = this.color;
@@ -380,9 +554,14 @@ class Particle {
 
 }
 
-function explode(x, y) {
 
-    const colors = [
+// ======================================
+// Explosion Function
+// ======================================
+
+function explode(x,y){
+
+    const colors=[
 
         "#ff4fd8",
         "#8a2be2",
@@ -393,7 +572,7 @@ function explode(x, y) {
 
     ];
 
-    for (let i = 0; i < 80; i++) {
+    for(let i=0;i<80;i++){
 
         particles.push(
 
@@ -403,7 +582,9 @@ function explode(x, y) {
                 y,
 
                 colors[
-                    Math.floor(Math.random() * colors.length)
+                    Math.floor(
+                        Math.random()*colors.length
+                    )
                 ]
 
             )
@@ -414,7 +595,12 @@ function explode(x, y) {
 
 }
 
-function animateFireworks() {
+
+// ======================================
+// Animation Loop
+// ======================================
+
+function animateFireworks(){
 
     ctx.clearRect(
         0,
@@ -423,66 +609,78 @@ function animateFireworks() {
         canvas.height
     );
 
-    for (let i = particles.length - 1; i >= 0; i--) {
+    for(let i=particles.length-1;i>=0;i--){
 
         particles[i].update();
 
         particles[i].draw();
 
-        if (particles[i].life <= 0) {
+        if(particles[i].life<=0){
 
-            particles.splice(i, 1);
+            particles.splice(i,1);
 
         }
 
     }
 
-    requestAnimationFrame(animateFireworks);
+    requestAnimationFrame(
+        animateFireworks
+    );
 
 }
 
 animateFireworks();
 
-// Auto Fireworks
 
-setInterval(() => {
+// ======================================
+// Auto Fireworks
+// ======================================
+
+setInterval(()=>{
 
     explode(
 
-        Math.random() * canvas.width,
+        Math.random()*canvas.width,
 
-        Math.random() * canvas.height * 0.6
+        Math.random()*canvas.height*0.6
 
     );
 
-}, 3000);
+},3000);
 
+
+// ======================================
 // Gift Button Fireworks
+// ======================================
 
-giftButton.addEventListener("click", () => {
+giftButton.addEventListener("click",()=>{
 
-    for (let i = 0; i < 10; i++) {
+    for(let i=0;i<10;i++){
 
-        setTimeout(() => {
+        setTimeout(()=>{
 
             explode(
 
-                Math.random() * canvas.width,
+                Math.random()*canvas.width,
 
-                100 +
-                Math.random() * canvas.height * 0.5
+                100+
+                Math.random()*
+                canvas.height*0.5
 
             );
 
-        }, i * 250);
+        },i*250);
 
     }
 
 });
 
-// Mouse Fireworks
 
-canvas.addEventListener("click", (e) => {
+// ======================================
+// Mouse Click Fireworks
+// ======================================
+
+canvas.addEventListener("click",(e)=>{
 
     explode(
 
@@ -493,17 +691,22 @@ canvas.addEventListener("click", (e) => {
     );
 
 });
+
+
 // ======================================
-// PART 5
-// Intro Story (Fixed Version)
+// End Of Part 4
+// ======================================
+// ======================================
+// CLEAN VERSION
+// Part 5 / 6
+// Intro Story + Gift Surprise
 // ======================================
 
+// Intro Elements
 const intro = document.getElementById("intro");
 const title = document.getElementById("introTitle");
 const text = document.getElementById("introText");
 const nextBtn = document.getElementById("nextIntro");
-
-// Intro Pages
 
 const introMessages = [
 
@@ -519,160 +722,65 @@ text:"Every smile of yours makes someone's world brighter. ✨"
 
 {
 title:"🌙 Tonight...",
-text:"The moon, the stars and the whole galaxy are celebrating your birthday because I told them it's your Birthday. 💜"
+text:"The moon, the stars and the whole galaxy are celebrating your birthday because it's your special day. 💜"
 },
 
 {
 title:"🎂 Happy Birthday",
-text:"Now it's time to open your special birthday surprise."
+text:"Now it's time to open your birthday surprise..."
 }
 
 ];
 
-let introPage = 0;
+let currentPage = 0;
 
-// Typing Effect
-
-function typeWriter(element,message,speed=35){
-
-clearInterval(element.timer);
-
-element.innerHTML="";
-
-let i=0;
-
-element.timer=setInterval(()=>{
-
-element.innerHTML+=message.charAt(i);
-
-i++;
-
-if(i>=message.length){
-
-clearInterval(element.timer);
-
-}
-
-},speed);
-
-}
-
-// Show Page
-
+// Show Intro
 function showIntro(index){
 
-typeWriter(title,introMessages[index].title,40);
-
-setTimeout(()=>{
-
-typeWriter(text,introMessages[index].text,20);
-
-},350);
+    title.innerHTML = introMessages[index].title;
+    text.innerHTML = introMessages[index].text;
 
 }
-
-// First Page
 
 showIntro(0);
 
 // Next Button
-
 nextBtn.addEventListener("click",()=>{
 
-introPage++;
+    currentPage++;
 
-if(introPage<introMessages.length){
+    if(currentPage < introMessages.length){
 
-showIntro(introPage);
+        showIntro(currentPage);
 
-}else{
+    }else{
 
-intro.style.opacity="0";
-
-setTimeout(()=>{
-
-intro.style.display="none";
-
-// Start Music
-
-if(bgMusic){
-
-bgMusic.volume=.6;
-
-bgMusic.play().catch(()=>{});
-
-}
-
-},600);
-
-}
-
-});
-// ======================================
-// PART 6
-// Confetti + Heart Rain + Balloons +
-// Parallax + Photo Glow
-// ======================================
-
-// -----------------------------
-// Premium Confetti
-// -----------------------------
-
-const confetti = document.getElementById("confetti");
-
-function launchConfetti(){
-
-    const colors = [
-
-        "#ff4fd8",
-        "#8a2be2",
-        "#00bfff",
-        "#ffd700",
-        "#ffffff",
-        "#ff69b4"
-
-    ];
-
-    for(let i=0;i<180;i++){
-
-        const piece=document.createElement("div");
-
-        piece.className="confetti-piece";
-
-        piece.style.left=Math.random()*100+"vw";
-
-        piece.style.background=
-
-        colors[Math.floor(Math.random()*colors.length)];
-
-        piece.style.animationDelay=
-
-        Math.random()*0.8+"s";
-
-        piece.style.transform=
-
-        `rotate(${Math.random()*360}deg)`;
-
-        confetti.appendChild(piece);
+        intro.style.opacity="0";
 
         setTimeout(()=>{
 
-            piece.remove();
+            intro.style.display="none";
 
-        },4500);
+            bgMusic.play().catch(()=>{});
+
+        },600);
 
     }
 
-}
-
-giftButton.addEventListener("click",launchConfetti);
+});
 
 
-// -----------------------------
-// Heart Rain
-// -----------------------------
+// ======================================
+// Gift Surprise
+// ======================================
 
 giftButton.addEventListener("click",()=>{
+
+    document.body.classList.add("surprise-mode");
+
+    card.classList.add("show");
+
+    // Heart Rain
 
     for(let i=0;i<60;i++){
 
@@ -687,7 +795,6 @@ giftButton.addEventListener("click",()=>{
             heart.style.left=Math.random()*100+"vw";
 
             heart.style.fontSize=
-
             (18+Math.random()*25)+"px";
 
             document.body.appendChild(heart);
@@ -705,423 +812,118 @@ giftButton.addEventListener("click",()=>{
 });
 
 
-// -----------------------------
-// Floating Balloons
-// -----------------------------
-
-const balloonContainer=
-
-document.getElementById("balloons");
-
-const balloonColors=[
-
-"#ff4fd8",
-"#8a2be2",
-"#00bfff",
-"#ffd700",
-"#ff6b6b",
-"#ffffff"
-
-];
-
-function createBalloon(){
-
-    const balloon=document.createElement("div");
-
-    balloon.className="balloon";
-
-    balloon.style.left=Math.random()*100+"vw";
-
-    balloon.style.background=
-
-    balloonColors[
-
-    Math.floor(Math.random()*balloonColors.length)
-
-    ];
-
-    balloon.style.animationDuration=
-
-    (8+Math.random()*5)+"s";
-
-    balloon.style.transform=
-
-    "scale("+(0.8+Math.random()*0.6)+")";
-
-    balloonContainer.appendChild(balloon);
-
-    setTimeout(()=>{
-
-        balloon.remove();
-
-    },14000);
-
-}
-
-setInterval(createBalloon,1200);
-
-
-// -----------------------------
-// Galaxy Mouse Parallax
-// -----------------------------
-
-const galaxy=document.querySelector(".galaxy");
-
-document.addEventListener("mousemove",(e)=>{
-
-    if(!galaxy) return;
-
-    const x=
-
-    (e.clientX/window.innerWidth-.5)*20;
-
-    const y=
-
-    (e.clientY/window.innerHeight-.5)*20;
-
-    galaxy.style.transform=
-
-    `translate(${x}px,${y}px) scale(1.08)`;
-
-});
-
-
-// -----------------------------
-// Premium Photo Glow
-// -----------------------------
-
-const photo=
-
-document.querySelector(".photo-frame");
-
-if(photo){
-
-photo.addEventListener("mouseenter",()=>{
-
-photo.style.boxShadow=
-
-"0 0 80px #ff66ff,0 0 120px #00bfff";
-
-});
-
-photo.addEventListener("mouseleave",()=>{
-
-photo.style.boxShadow=
-
-"0 0 35px #b84dff";
-
-});
-
-}
-
-
-// -----------------------------
-// Gift Button Hover
-// -----------------------------
-
-giftButton.addEventListener("mouseenter",()=>{
-
-giftButton.style.transform="scale(1.12)";
-
-});
-
-giftButton.addEventListener("mouseleave",()=>{
-
-giftButton.style.transform="scale(1)";
-
-});
 // ======================================
-// PART 7 - Gallery Hover Effects
+// End Of Part 5
+// ======================================
+// ======================================
+// CLEAN VERSION
+// Part 6 / 6
+// Final Popup + Gallery Lightbox
 // ======================================
 
-const galleryItems = document.querySelectorAll(".gallery-img");
+// ======================================
+// Final Popup
+// ======================================
 
-galleryItems.forEach(img => {
+const popup = document.getElementById("finalPopup");
+const closePopup = document.getElementById("closePopup");
 
-    img.addEventListener("mouseenter", () => {
+window.addEventListener("scroll", () => {
 
-        img.style.transform = "scale(1.05)";
-        img.style.transition = "0.4s";
-        img.style.boxShadow =
-        "0 0 35px #ff66ff, 0 0 60px #00bfff";
+    const scrollTop = window.scrollY;
 
-    });
+    const pageHeight =
+    document.body.scrollHeight - window.innerHeight;
 
-    img.addEventListener("mouseleave", () => {
+    if(scrollTop > pageHeight - 150){
 
-        img.style.transform = "scale(1)";
-        img.style.boxShadow = "none";
+        popup.classList.add("show");
 
-    });
+    }
 
 });
 
-// ======================================
-// Gallery Fade In Animation
-// ======================================
+closePopup.addEventListener("click", () => {
 
-const observer = new IntersectionObserver((entries)=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.style.opacity="1";
-            entry.target.style.transform="translateY(0px)";
-
-        }
-
-    });
-
-},{
-    threshold:0.15
-});
-
-galleryItems.forEach(img=>{
-
-    img.style.opacity="0";
-    img.style.transform="translateY(50px)";
-    img.style.transition="all .8s ease";
-
-    observer.observe(img);
+    popup.classList.remove("show");
 
 });
+
+
 // ======================================
-// PART 8 - INTRO STORY SYSTEM
-// ======================================
-
-const intro = document.getElementById("intro");
-const title = document.getElementById("introTitle");
-const text = document.getElementById("introText");
-const nextBtn = document.getElementById("nextIntro");
-
-const introMessages = [
-{
-title:"💜 Hey Mashfia...",
-text:"Daud made something special just for you..."
-},
-{
-title:"🐼 A Little Surprise",
-text:"Every smile of yours makes someone's world brighter. ✨"
-},
-{
-title:"🌙 Tonight...",
-text:"The moon, the stars and the whole galaxy are celebrating your birthday because it's your special day."
-},
-{
-title:"🎂 Happy Birthday",
-text:"Now it's time to open your birthday surprise. 💜"
-}
-];
-
-let currentPage = 0;
-
-function showIntro(index){
-
-title.textContent = introMessages[index].title;
-text.textContent = introMessages[index].text;
-
-}
-
-showIntro(0);
-
-nextBtn.addEventListener("click",()=>{
-
-currentPage++;
-
-if(currentPage < introMessages.length){
-
-showIntro(currentPage);
-
-}else{
-
-intro.style.opacity="0";
-
-setTimeout(()=>{
-
-intro.style.display="none";
-
-// Start music after intro
-bgMusic.play().catch(()=>{});
-
-},600);
-
-}
-
-});
-// ======================================
-// PART 9 - Premium Gallery Lightbox
+// Gallery Lightbox
 // ======================================
 
-const galleryImages = document.querySelectorAll(".gallery-img");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightboxImg");
+const galleryImages =
+document.querySelectorAll(".gallery-img");
 
-const closeLightbox = document.getElementById("closeLightbox");
-const prevPhoto = document.getElementById("prevPhoto");
-const nextPhoto = document.getElementById("nextPhoto");
+const lightbox =
+document.getElementById("lightbox");
+
+const lightboxImg =
+document.getElementById("lightboxImg");
+
+const closeLightbox =
+document.getElementById("closeLightbox");
+
+const prevPhoto =
+document.getElementById("prevPhoto");
+
+const nextPhoto =
+document.getElementById("nextPhoto");
 
 let currentImage = 0;
 
-// ======================
+
 // Open Image
-// ======================
 
 galleryImages.forEach((img,index)=>{
 
     img.addEventListener("click",()=>{
 
-        currentImage=index;
-
-        lightbox.classList.add("show");
-
-        lightboxImg.src=galleryImages[currentImage].src;
-
-        document.body.style.overflow="hidden";
-
-    });
-
-});
-
-// ======================
-// Close
-// ======================
-
-function closeViewer(){
-
-    lightbox.classList.remove("show");
-
-    document.body.style.overflow="auto";
-
-}
-
-closeLightbox.addEventListener("click",closeViewer);
-
-// ======================
-// Previous
-// ======================
-
-function showPrevious(){
-
-    currentImage--;
-
-    if(currentImage<0){
-
-        currentImage=galleryImages.length-1;
-
-    }
-
-    lightboxImg.src=galleryImages[currentImage].src;
-
-}
-
-prevPhoto.addEventListener("click",showPrevious);
-
-// ======================
-// Next
-// ======================
-
-function showNext(){
-
-    currentImage++;
-
-    if(currentImage>=galleryImages.length){
-
-        currentImage=0;
-
-    }
-
-    lightboxImg.src=galleryImages[currentImage].src;
-
-}
-
-nextPhoto.addEventListener("click",showNext);
-
-// ======================
-// Close When Background Clicked
-// ======================
-
-lightbox.addEventListener("click",(e)=>{
-
-    if(e.target===lightbox){
-
-        closeViewer();
-
-    }
-
-});
-
-// ======================
-// Keyboard Controls
-// ======================
-
-document.addEventListener("keydown",(e)=>{
-
-    if(!lightbox.classList.contains("show")) return;
-
-    switch(e.key){
-
-        case "ArrowLeft":
-            showPrevious();
-            break;
-
-        case "ArrowRight":
-            showNext();
-            break;
-
-        case "Escape":
-            closeViewer();
-            break;
-
-    }
-
-});
-// ======================================
-// PART 10 - Premium Gallery Lightbox
-// ======================================
-
-const galleryImages = document.querySelectorAll(".gallery-img");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightboxImg");
-
-const closeLightbox = document.getElementById("closeLightbox");
-const prevPhoto = document.getElementById("prevPhoto");
-const nextPhoto = document.getElementById("nextPhoto");
-
-let currentImage = 0;
-
-// Open Image
-galleryImages.forEach((img, index) => {
-
-    img.addEventListener("click", () => {
-
         currentImage = index;
 
         lightbox.classList.add("show");
 
-        lightboxImg.src = galleryImages[currentImage].src;
+        lightboxImg.src =
+        galleryImages[currentImage].src;
 
     });
 
 });
 
+
+// Close
+
+closeLightbox.addEventListener("click",()=>{
+
+    lightbox.classList.remove("show");
+
+});
+
+
 // Previous
-function showPrev(){
+
+prevPhoto.addEventListener("click",()=>{
 
     currentImage--;
 
     if(currentImage < 0){
 
-        currentImage = galleryImages.length - 1;
+        currentImage =
+        galleryImages.length - 1;
 
     }
 
-    lightboxImg.src = galleryImages[currentImage].src;
+    lightboxImg.src =
+    galleryImages[currentImage].src;
 
-}
+});
+
 
 // Next
-function showNext(){
+
+nextPhoto.addEventListener("click",()=>{
 
     currentImage++;
 
@@ -1131,22 +933,15 @@ function showNext(){
 
     }
 
-    lightboxImg.src = galleryImages[currentImage].src;
-
-}
-
-prevPhoto.addEventListener("click", showPrev);
-nextPhoto.addEventListener("click", showNext);
-
-// Close Button
-closeLightbox.addEventListener("click", () => {
-
-    lightbox.classList.remove("show");
+    lightboxImg.src =
+    galleryImages[currentImage].src;
 
 });
 
-// Click outside image
-lightbox.addEventListener("click", (e) => {
+
+// Close when background clicked
+
+lightbox.addEventListener("click",(e)=>{
 
     if(e.target === lightbox){
 
@@ -1156,27 +951,36 @@ lightbox.addEventListener("click", (e) => {
 
 });
 
+
 // Keyboard Controls
-document.addEventListener("keydown", (e) => {
+
+document.addEventListener("keydown",(e)=>{
 
     if(!lightbox.classList.contains("show")) return;
 
-    if(e.key === "ArrowLeft"){
+    if(e.key === "ArrowRight"){
 
-        showPrev();
+        nextPhoto.click();
 
     }
 
-    if(e.key === "ArrowRight"){
+    if(e.key === "ArrowLeft"){
 
-        showNext();
+        prevPhoto.click();
 
     }
 
     if(e.key === "Escape"){
 
-        lightbox.classList.remove("show");
+        closeLightbox.click();
 
     }
 
 });
+
+
+// ======================================
+// Finished
+// Happy Birthday Mashfia 💜
+// Made by Daud ❤️
+// ======================================
